@@ -1,0 +1,387 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Personal Portfolio</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+  <input class="theme-toggle" type="checkbox" id="theme-toggle" aria-label="Toggle theme" checked />
+
+  <header class="topbar">
+    <button class="help-button" id="help-btn" aria-label="Show help">?</button>
+    <label class="theme-switch" for="theme-toggle">
+      <span class="theme-switch__icon theme-switch__icon--sun">☀</span>
+      <span class="theme-switch__track">
+        <span class="theme-switch__thumb"></span>
+      </span>
+      <span class="theme-switch__icon theme-switch__icon--moon">☾</span>
+    </label>
+  </header>
+
+  <div class="help-modal" id="help-modal">
+    <div class="help-overlay" id="help-overlay"></div>
+    <div class="help-content">
+      <button class="help-close" id="help-close">✕</button>
+      <h2>Website Guide</h2>
+      <div class="help-tabs">
+        <button class="help-tab active" data-tab="hero">Hero Section</button>
+        <button class="help-tab" data-tab="3d-effect">3D Effect</button>
+        <button class="help-tab" data-tab="scroll">Scroll Parallax</button>
+        <button class="help-tab" data-tab="contact">Email Contact</button>
+        <button class="help-tab" data-tab="theme">Theme Toggle</button>
+        <button class="help-tab" data-tab="project">Projects Purpose</button>
+      </div>
+      <div class="help-panels">
+        <div class="help-panel active" id="hero-panel">
+        <h3>Hero Section - Main Landing Area</h3>
+        <p>The hero section is the first thing visitors see. It includes a title with 3D mouse-following effect and information about your work.</p>
+        <pre><code>// Hero element tracking
+const h1 = document.querySelector('.hero__content h1');
+h1.style.transform = `perspective(1200px) 
+  rotateX(${currentX}deg) rotateY(${currentY}deg)`;</code></pre>
+      </div>
+      <div class="help-panel" id="3d-effect-panel">
+        <h3>3D Mouse-Following Effect</h3>
+        <p>The title follows your cursor creating a subtle 3D perspective effect. As you move the mouse, the title rotates in 3D space.</p>
+        <pre><code>// Track mouse position in hero area
+function onMove(e) {
+  const rect = hero.getBoundingClientRect();
+  const px = ((e.clientX - rect.left) / rect.width - 0.5) * 2;
+  const py = ((e.clientY - rect.top) / rect.height - 0.5) * 2;
+  targetY = px * 18;
+  targetX = py * -12;
+}</code></pre>
+      </div>
+      <div class="help-panel" id="scroll-panel">
+        <h3>Scroll Parallax Effect</h3>
+        <p>Portfolio cards and content sections move differently as you scroll, creating depth and visual interest.</p>
+        <pre><code>// Update scroll effects for cards
+function updateScrollEffects() {
+  const center = window.innerHeight * 0.5;
+  scrollTargets.forEach(el => {
+    const rect = el.getBoundingClientRect();
+    const normalized = (rect.top - center) / 
+      (window.innerHeight * 0.8);
+  });
+}</code></pre>
+      </div>
+        <div class="help-panel" id="contact-panel">
+          <h3>Contact by Email</h3>
+          <p>The contact section contains a clickable email address. Selecting it opens your default email application so you can send me a message directly.</p>
+          <pre><code>&lt;a href="mailto:dr.boomerfromsvencoop@gmail.com"&gt;Email me&lt;/a&gt;</code></pre>
+        </div>
+      <div class="help-panel" id="theme-panel">
+        <h3>Theme Toggle - Light/Dark Mode</h3>
+        <p>Click the sun/moon icon in the top right to switch between light and dark themes. Your preference is saved.</p>
+        <pre><code>// CSS theme switching
+body:has(#theme-toggle:checked) {
+  --bg: #050816;
+  --text: #eef2ff;
+  --accent: #7c8cff;
+  /* All colors change based on theme */
+}</code></pre>
+      </div>
+      <div class="help-panel" id="project-panel">
+        <h3>Projects Purpose</h3>
+        <p>The projects section showcases work. Each project has a brief description and a link to view more details or visit the project website. Thanks for your attention!</p>
+      </div>
+      </div>
+    </div>
+  </div>
+
+  <main class="page" id="top">
+    <section class="hero">
+      <div class="hero__content">
+        <p class="eyebrow">Personal Portfolio Landing Page</p>
+        <h1>
+          <span>Hi, My name is</span>
+          Daniel Shervashidze
+        </h1>
+        <p class="hero__copy">
+          I am a level designer, 3D modeler, interactive experiences creator, programmer, have skills in texturing/UV editing.
+          I would like to show my work and share my experience in the industry.
+        </p>
+
+
+        <div class="hero__actions">
+          <a class="button button--primary" href="#story">Explore the Story</a>
+        </div>
+
+        <div class="hero__meta">
+          <div class="meta-card has-tooltip" tabindex="0" data-tooltip="Currently my main focus is Level Design and Coding">
+            <strong>Main focus</strong>
+          </div>
+          <div class="meta-card has-tooltip" tabindex="0" data-tooltip="I have 2 years experience in Level design, 3D modeling and Texturing/UV editing">
+            <strong>Additional skills</strong>
+          </div>
+          <div class="meta-card has-tooltip" tabindex="0" data-tooltip="So far I have made several projects but only 6 of them are public">
+            <strong>Featured works</strong>
+          </div>
+        </div>
+      </div>
+
+      <aside class="hero__panel" aria-label="Portfolio summary">
+        <div class="panel-card panel-card--large">
+          <p class="panel-label">What I do</p>
+          <h2>Build, design, and deliver work that feels clear and professional.</h2>
+          <p>
+            Developing fully interactive and immersive, oftenly, physics-based locations for games.
+            My main goal is to make every second of the experience enjoyable and memorable for players.
+          </p>
+        </div>
+
+        <div class="panel-grid">
+          <div class="panel-card">
+            <span class="panel-kicker">Focus</span>
+            <strong>Creative direction</strong>
+          </div>
+          <div class="panel-card">
+            <span class="panel-kicker">Style</span>
+            <strong>Detailed & optimized</strong>
+          </div>
+          <div class="panel-card">
+            <span class="panel-kicker">Value</span>
+            <strong>Fast & polished</strong>
+          </div>
+          <div class="panel-card">
+            <span class="panel-kicker">Goal</span>
+            <strong>Strong impression</strong>
+          </div>
+        </div>
+      </aside>
+    </section>
+
+    <section class="story" id="story">
+      <div class="section-heading">
+        <p class="eyebrow">My Experience</p>
+        <h2>Detailed information about me and my work</h2>
+        <p>
+          In this section I will share more about my experience, skills, and the kind of work I do. The layout is designed to keep the text readable and engaging, with visual
+          changes while scrolling.
+        </p>
+      </div>
+
+      <div class="story__stack">
+        <article class="story-row">
+          <div class="story-cloud story-cloud--left">
+            <span class="story-card__tag">Section One</span>
+            <h3>Level Design</h3>
+            <p>
+              I am making levels for games for 6 years and I have a lot of experience in this field. I'm able to create levels that are not only visually appealing but also optimized and well-structured. I am always looking for new ways to improve my skills and create better levels. This is the main
+              idea behind my work.
+            </p>
+          </div>
+          <div class="story-media" aria-label="Section one preview video">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="https://res.cloudinary.com/dvvpmro7z/video/upload/w_1600,h_900,c_fill/2026-04-25-160353_qxtsad.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </article>
+
+        <article class="story-row story-row--reverse">
+          <div class="story-cloud story-cloud--right">
+            <span class="story-card__tag">Section Two</span>
+            <h3>3D Modeling</h3>
+            <p>
+              Designing 3D models for my projects has always been huge part of my work. 
+              I have experience in creating of assets in Blender, 
+              mostly low-poly models or simple objects liek trees, lamp posts, etc. 
+              I am always looking for new techniques and tools to improve my workflow. This is the
+              kind of projects I enjoy a lot.
+            </p>
+          </div>
+          <div class="story-media" aria-label="Section two preview video">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="https://res.cloudinary.com/dvvpmro7z/video/upload/w_1600,h_900,c_fill/2026-04-25-181050_thh1wa.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </article>
+
+        <article class="story-row">
+          <div class="story-cloud story-cloud--left">
+            <span class="story-card__tag">Section Three</span>
+            <h3>Programming</h3>
+            <p>
+              I have experience in programming on Python and Lua, I enjoy creating efficient and maintainable code.
+              This is the kind of work that allows me to bring my creative ideas to life.
+            </p>
+          </div>
+          <div class="story-media" aria-label="Section three preview video">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="https://res.cloudinary.com/dvvpmro7z/video/upload/w_1600,h_900,c_fill/2026-04-25-183748_puziea.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="projects" id="projects">
+      <div class="section-heading">
+        <p class="eyebrow">My Projects</p>
+        <h2>Active projects I am building right now</h2>
+      </div>
+
+      <div class="projects__grid">
+
+        <article class="project-card">
+          <div class="project-card__body">
+            <span class="story-card__tag">Bot Development</span>
+            <h3>Bot++</h3>
+            <p>
+              A fully customisable and functional Discord bot with a wide range of features.
+              Built to be modular, fast and easy to configure for any server.
+            </p>
+            <a class="project-card__link" href="https://botplusplus.xyz/" target="_blank" rel="noopener">
+              Visit Bot++ website ↗
+            </a>
+            <a class="project-card__expand-btn" href="#expand-bot">View full project ↗</a>
+          </div>
+          <div class="project-card__media">
+            <video muted loop playsinline preload="metadata">
+              <source src="https://res.cloudinary.com/dvvpmro7z/video/upload/q_auto:low,w_640/2026-04-25-192638_gkokbf.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__body">
+            <span class="story-card__tag">Level Design</span>
+            <h3>New Garry's Mod Level</h3>
+            <p>
+              A new playable level for Garry's Mod built with Hammer World Editor++ and Blender.
+              Check out my previous published works on the Steam Workshop:
+            </p>
+            <div class="project-card__links">
+              <a class="project-card__link" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3451986505" target="_blank" rel="noopener">
+                Workshop map 1 ↗
+              </a>
+              <a class="project-card__link" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3020792480" target="_blank" rel="noopener">
+                Workshop map 2 ↗
+              </a>
+            </div>
+            <a class="project-card__expand-btn" href="#expand-gmod">View full project ↗</a>
+          </div>
+          <div class="project-card__media">
+            <video muted loop playsinline preload="metadata">
+              <source src="https://res.cloudinary.com/dvvpmro7z/video/upload/q_auto:low,w_640/Garry_s_Mod_-_2026-04-25_7-44-34_PM_dksykv.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </article>
+
+        <article class="project-card">
+          <div class="project-card__body">
+            <span class="story-card__tag">Game Development</span>
+            <h3>New Game (Godot)</h3>
+            <p>
+              A completely new game currently in development using the Godot Engine.
+              More details will be revealed as the project progresses.
+            </p>
+            <a class="project-card__expand-btn" href="#expand-godot">View full project ↗</a>
+          </div>
+          <div class="project-card__media">
+            <video muted loop playsinline preload="metadata">
+              <source src="https://res.cloudinary.com/dvvpmro7z/video/upload/q_auto:low,w_640/2026-04-24_20-58-04_pmpiv9.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </article>
+
+      </div>
+
+      <!-- ── Expanded overlays (CSS :target, no JS) ── -->
+
+      <div class="project-expand" id="expand-bot">
+        <a class="project-expand__backdrop" href="#projects" aria-label="Close"></a>
+        <div class="project-expand__panel">
+          <a class="project-expand__close" href="#projects" aria-label="Close">✕</a>
+          <div class="project-expand__body">
+            <span class="story-card__tag">Bot Development</span>
+            <h2>Bot++</h2>
+            <p>
+              The purpose of the Bot++ was to combine everything that other bot has into one, optimise it and
+              add more unique features, for example scheduling feature to send different text messages which could
+              be adjusted down to exact timezones and days you want, and many more interesting new features.
+            </p>
+            <a class="project-card__link" href="https://botplusplus.xyz/" target="_blank" rel="noopener">Visit Bot++ website ↗</a>
+          </div>
+          <div class="project-expand__media">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="https://res.cloudinary.com/dvvpmro7z/video/upload/2026-04-25-192638_gkokbf.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-expand" id="expand-gmod">
+        <a class="project-expand__backdrop" href="#projects" aria-label="Close"></a>
+        <div class="project-expand__panel">
+          <a class="project-expand__close" href="#projects" aria-label="Close">✕</a>
+          <div class="project-expand__body">
+            <span class="story-card__tag">Level Design</span>
+            <h2>New Garry's Mod Level</h2>
+            <p>
+              A new playable level for Garry's Mod built with Hammer World Editor++ and Blender.
+              Check out my previous published works on the Steam Workshop:
+            </p>
+            <div class="project-card__links">
+              <a class="project-card__link" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3451986505" target="_blank" rel="noopener">Workshop map 1 ↗</a>
+              <a class="project-card__link" href="https://steamcommunity.com/sharedfiles/filedetails/?id=3020792480" target="_blank" rel="noopener">Workshop map 2 ↗</a>
+            </div>
+          </div>
+          <div class="project-expand__media">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="https://res.cloudinary.com/dvvpmro7z/video/upload/Garry_s_Mod_-_2026-04-25_7-44-34_PM_dksykv.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+
+      <div class="project-expand" id="expand-godot">
+        <a class="project-expand__backdrop" href="#projects" aria-label="Close"></a>
+        <div class="project-expand__panel">
+          <a class="project-expand__close" href="#projects" aria-label="Close">✕</a>
+          <div class="project-expand__body">
+            <span class="story-card__tag">Game Development</span>
+            <h2>New Game (Godot)</h2>
+            <p>
+              The new game currently in development using the Godot Engine will be a 3D shooter with elements of destruction.
+              I am being a part of small team of 3 and together we are making a game, I mainly do the Level design for the game
+              More details will be revealed as the project progresses.
+            </p>
+          </div>
+          <div class="project-expand__media">
+            <video autoplay muted loop playsinline preload="metadata">
+              <source src="https://res.cloudinary.com/dvvpmro7z/video/upload/2026-04-24_20-58-04_pmpiv9.mp4" type="video/mp4" />
+            </video>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="contact" id="contact" aria-labelledby="contact-title">
+      <div class="section-heading">
+        <p class="eyebrow">Contact</p>
+        <h2 id="contact-title">Contact me</h2>
+        <p>Have a question about my work or want to collaborate? You can reach me directly by email.</p>
+      </div>
+      <div class="contact-card">
+        <span class="contact-card__label">Email address</span>
+        <a class="contact-card__email" href="mailto:dr.boomerfromsvencoop@gmail.com">dr.boomerfromsvencoop@gmail.com</a>
+        <p>Click the address to open your email app.</p>
+      </div>
+    </section>
+  </main>
+  <nav class="bottom-nav" aria-label="Quick navigation">
+    <a class="bottom-nav__btn" href="#story">What I Do</a>
+    <a class="bottom-nav__btn" href="#projects">Projects</a>
+    <a class="bottom-nav__btn" href="#contact">Contact</a>
+    <a class="bottom-nav__btn" href="#top">&#8593; Top</a>
+    <label class="bottom-nav__btn" for="theme-toggle">Theme</label>
+  </nav>
+  <script src="script.js"></script>
+</body>
+</html>
